@@ -3,13 +3,13 @@
 namespace app\models;
 
 use Yii;
-
+use frontend\models\MongodbModel;
 /**
  * This is the model class for collection "news".
  *
  * @property \MongoDB\BSON\ObjectID|string $_id
  */
-class News extends \yii\mongodb\ActiveRecord
+class News extends MongodbModel
 {
     /**
      * @inheritdoc

@@ -3,13 +3,13 @@
 namespace app\models;
 
 use Yii;
-
+use frontend\models\MongodbModel;
 /**
  * This is the model class for collection "gallary".
  *
  * @property \MongoDB\BSON\ObjectID|string $_id
  */
-class Gallary extends \yii\mongodb\ActiveRecord
+class Gallary extends MongodbModel
 {
     /**
      * @inheritdoc

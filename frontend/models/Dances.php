@@ -48,4 +48,19 @@ class Dances extends \yii\mongodb\ActiveRecord
             '_id' => Yii::t('app', 'ID'),
         ];
     }
+    
+    public function setOptions($postArray)
+    {    
+        if(!key_exists('Dance', $postArray)) {
+                return false;
+        }
+        
+        $post = $postArray['Dance'];
+        $this->name = $post['name'];
+        $this->photo = $post['photo'];
+        $this->start_date = $post['description'];
+        $this->active = $post['start_year'];
+        
+        return true;
+    }
 }
