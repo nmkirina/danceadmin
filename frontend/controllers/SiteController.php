@@ -12,8 +12,6 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use app\models\Staff;
-use yii\mongodb\Query;
 /**
  * Site controller
  */
@@ -73,12 +71,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-//        Yii::$app
-//        echo '<pre>';
-//        var_dump($rows);
-//        echo '</pre>';
-//        die;
-//        return $this->render('index');
+        return $this->render('index');
     }
 
     /**
@@ -108,7 +101,7 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionLogout()
-    {
+    {        
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -154,11 +147,8 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
-        $model = new SignupForm();
+       $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
-            $user = $model->signup();
-//            var_dump($user);
-//            die;
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();

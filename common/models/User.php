@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
 use yii\mongodb\Query;
@@ -14,15 +14,8 @@ use yii\base\NotSupportedException;
  */
 class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
 {
-    private $password_hash;
-    private $auth_key;
-    private $password_reset_token;
-    public $username;
-    public $password;
-    public $email;
-    public $created_at;
-    public $updated_at;
-
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 10;
 
     /**
      * @inheritdoc
@@ -38,7 +31,8 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
     public function attributes()
     {
         return [
-            '_id',
+            '_id', 'password_hash', 'auth_key', 'password_reset_token', 
+            'username', 'password', 'email', 'created_at', 'updated_at', 'status'
         ];
     }
 
@@ -59,6 +53,10 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
     {
         return [
             '_id' => Yii::t('app', 'ID'),
+            'password_hash' => Yii::t('password_hash', 'Password hash'),
+            'auth_key' => Yii::t('auth_key', 'Auth key'),
+            'password_reset_token' => Yii::t('password_reset_token', 'Password reset token'),
+            'username' => Yii::t('username', 'Username'),
         ];
     }
     
@@ -87,7 +85,7 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
     {
         $query = new Query();
         $query->from('user')->where(['_id' => $id, 'status' => self::STATUS_ACTIVE]);
-        return $query->one();
+        return self::getUser($query->one());
     }
 
 
@@ -101,7 +99,7 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
     {
         $query = new Query();
         $query->from('user')->where(['username' => $username, 'status' => self::STATUS_ACTIVE]);
-        return $query->one();
+        return self::getUser($query->one());
     }
 
     /**
@@ -118,7 +116,7 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
         
         $query = new Query();
         $query->from('user')->where(['password_reset_token' => $token, 'status' => self::STATUS_ACTIVE]);
-        return $query->one();
+        return self::getUser($query->one());
     }
 
     /**
@@ -143,7 +141,7 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
      */
     public function getId()
     {
-        return self::primaryKey();
+        return $this->_id;
     }
 
     /**
@@ -207,14 +205,27 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
     
-//    public function save()
-//    {
-//        $collection = Yii::$app->mongodb->getCollection('user');
-//        return $collection->insert([
-//                        'username' => $this->username,
-//                        'email' => $this->email,
-//                        'password_hash' => $this->password_hash,
-//                        'auth_key' => $this->auth_key
-//                    ]);
-//    }
+    public function saveMongoUser()
+    {
+        $collection = Yii::$app->mongodb->getCollection('user');
+        return $collection->insert([
+                        'username' => $this->username,
+                        'email' => $this->email,
+                        'password_hash' => $this->password_hash,
+                        'auth_key' => $this->auth_key,
+                        'status' => self::STATUS_ACTIVE,
+                    ]);
+    }
+    
+    private static function getUser($mongoUser)
+    {
+        $user = new User();
+        $user->username = $mongoUser['username'];
+        $user->_id = (string)$mongoUser['_id'];
+        $user->email = $mongoUser['email'];
+        $user->password_hash = $mongoUser['password_hash'];
+        $user->auth_key = $mongoUser['auth_key'];
+        $user->status = $mongoUser['status'];
+        return $user;
+    }
 }
