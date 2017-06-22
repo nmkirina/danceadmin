@@ -24,6 +24,10 @@ $this->title = Yii::t('app', 'Galleries');
             '_id',
             'name',
             'album',
+            [
+                'format' => 'image',
+                'value' => function($data){return $data->imageUrl;} 
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

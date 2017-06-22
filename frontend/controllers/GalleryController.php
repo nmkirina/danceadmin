@@ -30,6 +30,8 @@ class GalleryController extends BaseCrudController
 
         if (Yii::$app->request->isPost) {
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            $post = Yii::$app->request->post();
+            $model->album = $post['UploadForm']['album'];
             if ($model->upload()) {
                 return $this->render('gallery',['items' => $this->getItems()]);
             }

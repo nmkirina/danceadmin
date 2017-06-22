@@ -30,6 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             '_id',
             'name',
+            [
+                'attribute' => 'name',
+                'value' => '/uploads/' . $model->name,
+                'format' => ['image',['width' => '100', 'height' => '100']]
+            ],
             'album',
         ],
     ]) ?>

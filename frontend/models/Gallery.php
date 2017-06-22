@@ -48,4 +48,9 @@ class Gallery extends MongodbModel
             '_id' => Yii::t('app', 'ID'),
         ];
     }
+    
+    public function getImageUrl()
+    {
+        return \Yii::$app->request->BaseUrl . '/uploads/' . $this->name;
+    }
 }
