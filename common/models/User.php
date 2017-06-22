@@ -83,9 +83,7 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        $query = new Query();
-        $query->from('user')->where(['_id' => $id, 'status' => self::STATUS_ACTIVE]);
-        return self::getUser($query->one());
+        return self::findOne(['_id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
 
@@ -97,9 +95,7 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        $query = new Query();
-        $query->from('user')->where(['username' => $username, 'status' => self::STATUS_ACTIVE]);
-        return self::getUser($query->one());
+        return self::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -114,9 +110,7 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
             return null;
         }
         
-        $query = new Query();
-        $query->from('user')->where(['password_reset_token' => $token, 'status' => self::STATUS_ACTIVE]);
-        return self::getUser($query->one());
+        return self::findOne(['password_reset_token' => $token, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -208,24 +202,16 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
     public function saveMongoUser()
     {
         $collection = Yii::$app->mongodb->getCollection('user');
-        return $collection->insert([
+        $newUserId = $collection->insert([
                         'username' => $this->username,
                         'email' => $this->email,
                         'password_hash' => $this->password_hash,
                         'auth_key' => $this->auth_key,
                         'status' => self::STATUS_ACTIVE,
                     ]);
-    }
-    
-    private static function getUser($mongoUser)
-    {
-        $user = new User();
-        $user->username = $mongoUser['username'];
-        $user->_id = (string)$mongoUser['_id'];
-        $user->email = $mongoUser['email'];
-        $user->password_hash = $mongoUser['password_hash'];
-        $user->auth_key = $mongoUser['auth_key'];
-        $user->status = $mongoUser['status'];
-        return $user;
+        if($newUserId) {
+            return self::findOne($newUserId);
+        }
+        return false;
     }
 }

@@ -54,6 +54,7 @@ class SignupForm extends ActiveRecord
         $user->setPassword($this->password);
         $user->generateAuthKey();
         
-        return $user->saveMongoUser() ? $user : null;
+        $newUser = $user->saveMongoUser();
+        return $newUser ? $newUser : null;
     }
 }
