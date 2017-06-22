@@ -26,12 +26,12 @@ abstract class BaseCrudController extends \yii\web\Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'delete', 'update', 'view'],
+                        'actions' => ['index', 'create', 'delete', 'update', 'view', 'gallery', 'upload'],
                         'allow' => false,
                         'roles' => ['?']
                     ],
                     [
-                        'actions' => ['index', 'create', 'delete', 'update', 'view'],
+                        'actions' => ['index', 'create', 'delete', 'update', 'view', 'gallery', 'upload'],
                         'allow' => true,
                         'roles' => ['@']
                     ]

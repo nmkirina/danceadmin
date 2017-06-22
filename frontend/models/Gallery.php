@@ -9,14 +9,14 @@ use frontend\models\MongodbModel;
  *
  * @property \MongoDB\BSON\ObjectID|string $_id
  */
-class Gallary extends MongodbModel
+class Gallery extends MongodbModel
 {
     /**
      * @inheritdoc
      */
     public static function collectionName()
     {
-        return ['dance', 'gallary'];
+        return ['dance', 'gallery'];
     }
 
     /**
