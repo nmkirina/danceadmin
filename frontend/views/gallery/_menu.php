@@ -1,6 +1,5 @@
 <?php
 $titles = [
-    'Upload' => 'upload', 
     'Photo list' => 'gallery', 
     'Galleries' => 'index', 
     ];

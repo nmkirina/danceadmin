@@ -5,7 +5,6 @@ namespace frontend\controllers;
 use Yii;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
-use yii\helpers\FileHelper;
 use frontend\controllers\BaseCrudController;
 use app\models\Gallery;
 
@@ -32,31 +31,41 @@ class GalleryController extends BaseCrudController
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             $post = Yii::$app->request->post();
             $model->album = $post['UploadForm']['album'];
-            if ($model->upload()) {
-                return $this->render('gallery',['items' => $this->getItems()]);
+            if ($model->upload() && $model->dbSave()) {
+                return $this->redirect(['index']);
             }
         }
-
-        return $this->render('upload', ['model' => $model]);
-    }
-
-    public function actionGallery()
-    {
-        return $this->render('gallery', ['items' => $this->getItems()]);
+        return $this->render('create', ['model' => $model]);
     }
     
-    protected function getItems()
-    {
-        $files = FileHelper::findFiles(__DIR__ .'/../web/uploads/');
-        $items = [];
-        foreach ($files as $file) {
-           $pathArray = explode('/', $file);
-           $items[] = [
-               'url' => '/uploads/' . $pathArray[count($pathArray) - 1],
-               'src' => '/uploads/' . $pathArray[count($pathArray) - 1],
-               'options' => array('title' => 'Title')
-           ];
+    public function actionUpdate($id) {
+        
+        $model = UploadForm::findOne($id);
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->updateGallery(Yii::$app->request->post())) {
+                return $this->redirect(['view', 'id' => (string)$model->_id]);
+            }
         }
-        return $items;
+        return $this->render('update', ['model' => $model]);
+        
+    }
+    
+    public function actionGallery()
+    {
+        return $this->render('gallery', ['albums' => Gallery::getAlbums()]);
+    }
+    
+    public function actionDelete($id)
+    {
+        $gallery = Gallery::findOne($id);
+        $gallery->deleteGallery();
+        return $this->redirect(['index']);
+    }
+    
+    public function actionMakethumb()
+    {       
+        $this->render('makethumb', ['result' => UploadForm::makeThumbs()]);
     }
 }

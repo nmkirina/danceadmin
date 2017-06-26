@@ -31,7 +31,7 @@ abstract class BaseCrudController extends \yii\web\Controller
                         'roles' => ['?']
                     ],
                     [
-                        'actions' => ['index', 'create', 'delete', 'update', 'view', 'gallery', 'upload'],
+                        'actions' => ['index', 'create', 'delete', 'update', 'view', 'gallery', 'upload', 'makethumb'],
                         'allow' => true,
                         'roles' => ['@']
                     ]
@@ -40,7 +40,7 @@ abstract class BaseCrudController extends \yii\web\Controller
         ];
     }
     
-    
+
     /**
      * Displays a single model.
      * @param integer $_id

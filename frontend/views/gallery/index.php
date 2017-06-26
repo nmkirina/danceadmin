@@ -14,7 +14,7 @@ $this->title = Yii::t('app', 'Galleries');
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Gallery'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Gallery'), ['upload'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,8 +25,9 @@ $this->title = Yii::t('app', 'Galleries');
             'name',
             'album',
             [
-                'format' => 'image',
+                'format' => ['image', ['width' => '100', 'height' => '100']],
                 'value' => function($data){return $data->imageUrl;} 
+                
             ],
 
             ['class' => 'yii\grid\ActionColumn'],
