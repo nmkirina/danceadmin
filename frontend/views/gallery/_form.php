@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'album') ?>
+    <?= $form->field($model, 'album')->dropDownList($model->getAlbumList()); ?>
     <?= $form->field($model, 'name')->hiddenInput(['value' => $model->name ? $model->name : 'default value']);?>
     <?php if($model->name):?>
         <img src="<?='uploads/' . $model->name?>" height="100" widht="100">

@@ -3,13 +3,14 @@
 namespace app\models;
 
 use Yii;
+use frontend\models\MongodbModel;
 
 /**
  * This is the model class for collection "dances".
  *
  * @property \MongoDB\BSON\ObjectID|string $_id
  */
-class Dances extends \yii\mongodb\ActiveRecord
+class Dances extends MongodbModel
 {
     /**
      * @inheritdoc

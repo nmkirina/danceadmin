@@ -1,5 +1,16 @@
 <?php $this->render('_menu', ['title' => 'Photo list'])?>
+<ul>
 <?php foreach ($albums as $album):?>
-    <a><?= $album['album']; ?></a>
-    <?= dosamigos\gallery\Gallery::widget(['items' => $album['items']]);?>
+    <li class="album-link">
+        <a id="<?= $album['album']; ?>"><?= $album['album']; ?></a>
+        <div class="album-items">
+            <?= dosamigos\gallery\Gallery::widget(['items' => $album['items']]);?>
+        </div>
+    </li>
 <?php endforeach;?>
+</ul>
+<script>
+//    $('a').click(function(){
+//        $(this).next().toggle();
+//    })
+</script>

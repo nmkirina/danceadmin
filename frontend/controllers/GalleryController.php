@@ -7,6 +7,7 @@ use app\models\UploadForm;
 use yii\web\UploadedFile;
 use frontend\controllers\BaseCrudController;
 use app\models\Gallery;
+use app\models\AlbumSearch;
 
 /**
  * GalleryController implements the CRUD actions for Gallary model.
@@ -21,6 +22,17 @@ class GalleryController extends BaseCrudController
     
     protected function findById($id) {
         return Gallery::findOne($id);
+    }
+    
+     public function actionIndex()
+    {
+        $searchModel = new AlbumSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
     
     public function actionUpload()
@@ -67,5 +79,14 @@ class GalleryController extends BaseCrudController
     public function actionMakethumb()
     {       
         $this->render('makethumb', ['result' => UploadForm::makeThumbs()]);
+    }
+    
+    protected function findModel($id)
+    {
+        if (($model = Gallery::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }

@@ -18,12 +18,15 @@ $this->title = Yii::t('app', 'Galleries');
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            '_id',
             'name',
-            'album',
+            [
+                'attribute' => 'album',
+                'format' => 'text',
+                'filter' => app\models\Gallery::getAlbumList(),
+            ],
             [
                 'format' => ['image', ['width' => '100', 'height' => '100']],
                 'value' => function($data){return $data->imageUrl;} 

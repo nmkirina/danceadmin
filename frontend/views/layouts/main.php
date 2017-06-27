@@ -19,6 +19,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -45,7 +46,9 @@ AppAsset::register($this);
             ['label' => 'History', 'url' => ['/history/index']],
             ['label' => 'News', 'url' => ['/news/index']],
             ['label' => 'Staff', 'url' => ['/staff/index']],
+            ['label' => 'Album', 'url' => ['/album/index']],
             ['label' => 'Gallery', 'url' => ['/gallery/index']],
+            ['label' => 'Gallery2', 'url' => ['/gallery2/index']],
             ['label' => 'Make thumb', 'url' => ['/gallery/makethumb']],
         ];
         $menuItems[] = '<li>'

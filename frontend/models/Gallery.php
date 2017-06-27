@@ -4,8 +4,8 @@ namespace app\models;
 
 use Yii;
 use frontend\models\MongodbModel;
-use yii\helpers\FileHelper;
-use yii\mongodb\Collection;
+use yii\mongodb\Query;
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for collection "gallary".
  *
@@ -59,6 +59,14 @@ class Gallery extends MongodbModel
         return \Yii::$app->request->BaseUrl . '/uploads/' . $this->name;
     }
     
+    public function getAlbumList()
+    {
+        $query = new Query();
+        $query->select(['_id'])->from('album');
+        $albums = $query->all();
+        return ArrayHelper::map($albums, '_id', '_id');
+    }
+
     public static function getAlbums()
     {
         $collection = Yii::$app->mongodb->getCollection('gallery');
