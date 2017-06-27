@@ -9,13 +9,13 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="gallery-form">
-
+    <?php $image = $model->imageFieldName;?>
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'album')->dropDownList($model->getAlbumList()); ?>
-    <?= $form->field($model, 'name')->hiddenInput(['value' => $model->name ? $model->name : 'default value']);?>
+    <?= $form->field($model, 'name')->hiddenInput(['value' => $model->$image ? $model->$image : 'default value']);?>
     <?php if($model->name):?>
-        <img src="<?='uploads/' . $model->name?>" height="100" widht="100">
+        <img src="<?='uploads/thumbs/sm_' . $model->$image?>">
     <?php endif;?>
     
     <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>

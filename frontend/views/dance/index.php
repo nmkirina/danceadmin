@@ -23,7 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             '_id',
             'name',
-            'photo',
+            [
+                'format' => ['image', ['width' => '100', 'height' => '100']],
+                'value' => function($data){return $data->imageUrl;} 
+                
+            ],
             'description',
             'start_year',
 

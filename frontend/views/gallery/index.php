@@ -1,22 +1,6 @@
 <?php
-
-use yii\helpers\Html;
-use yii\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->render('_menu', ['title' => 'Galleries']);
-$this->title = Yii::t('app', 'Galleries');
-?>
-<div class="gallery-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Gallery'), ['upload'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
+echo $this->render('../template/index', ['title' => 'Galleries', 
+    'modelname' => 'Gallery', 'data' => [
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -28,12 +12,10 @@ $this->title = Yii::t('app', 'Galleries');
                 'filter' => app\models\Gallery::getAlbumList(),
             ],
             [
-                'format' => ['image', ['width' => '100', 'height' => '100']],
+                'format' => ['image'],
                 'value' => function($data){return $data->imageUrl;} 
                 
             ],
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
-</div>
+    ]]);

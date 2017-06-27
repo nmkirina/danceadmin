@@ -48,7 +48,6 @@ AppAsset::register($this);
             ['label' => 'Staff', 'url' => ['/staff/index']],
             ['label' => 'Album', 'url' => ['/album/index']],
             ['label' => 'Gallery', 'url' => ['/gallery/index']],
-            ['label' => 'Gallery2', 'url' => ['/gallery2/index']],
             ['label' => 'Make thumb', 'url' => ['/gallery/makethumb']],
         ];
         $menuItems[] = '<li>'

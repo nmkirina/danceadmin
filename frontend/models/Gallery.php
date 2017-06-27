@@ -13,9 +13,6 @@ use yii\helpers\ArrayHelper;
  */
 class Gallery extends MongodbModel
 {
-    const UPLOADS = 'uploads/';
-    const THUMBS = 'uploads/thumbs/';
-    const THUMBS_PREFIX = 'sm_';
     /**
      * @inheritdoc
      */
@@ -54,12 +51,12 @@ class Gallery extends MongodbModel
         ];
     }
     
-    public function getImageUrl()
-    {
-        return \Yii::$app->request->BaseUrl . '/uploads/' . $this->name;
+    public function __construct($config = array()) {
+        parent::__construct($config);
+        $this->imageFieldName = 'name';
     }
-    
-    public function getAlbumList()
+
+        public function getAlbumList()
     {
         $query = new Query();
         $query->select(['_id'])->from('album');
@@ -101,27 +98,7 @@ class Gallery extends MongodbModel
         }
         return $album;
     }
-    
-    public function deleteFile($file)
-    {
-        if(file_exists($file)){
-            return unlink($file);
-        }
-        return false;
-    }
-
-    public function deleteFileAndThumb()
-    {
-        return $this->deleteFile(self::UPLOADS . $this->name) &&
-                $this->deleteFile(self::THUMBS . self::THUMBS_PREFIX . $this->name);
-    }
-    
-    public function deleteGallery()
-    {
-        $this->deleteFileAndThumb();
-        $this->delete();
-    }
-    
+     
     public function dbSave()
     {
         foreach ($this->imageNameList as $imageName){

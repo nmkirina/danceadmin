@@ -103,7 +103,7 @@ abstract class BaseCrudController extends \yii\web\Controller
             ]);
         }
     }
-
+    
     /**
      * Deletes an existing  model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
