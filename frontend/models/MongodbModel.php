@@ -126,24 +126,31 @@ class MongodbModel extends ActiveRecord
         $this->delete();
     }
     
-    public function getAttributeList() 
+    public function getAttributeList($form = false)
     {
         $attributes = $this->attributes();
         if($this->collectionName()[1] != 'gallery'){
-            $key = array_search('_id', $attributes);
-            unset($attributes[$key]);
+            $attributes = $this->unsetAttribute($attributes, '_id');
         }
         if($this->imageFieldName){
             $image = $this->imageFieldName;
-            $key = array_search($image, $attributes);
-            unset($attributes[$key]);
-            $attributes[] = [
-                'attribute' => $image,
-                'value' => '/uploads/thumbs/sm_' . $this->$image,
-                'format' => ['image']
-            ];
+            $attributes = $this->unsetAttribute($attributes, $image);
+            if(!$form){
+                $attributes[] = [
+                    'attribute' => $image,
+                    'value' => '/uploads/thumbs/sm_' . $this->$image,
+                    'format' => ['image']
+                ];
+            }
         }
         return $attributes;
+    }
+    
+    protected function unsetAttribute($list, $attribute)
+    {
+        $key = array_search($attribute, $list);
+        unset($list[$key]);
+        return $list;
     }
     
     protected static function getFilesFromFolder($folder)

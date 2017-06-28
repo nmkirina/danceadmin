@@ -12,7 +12,7 @@ $image = $model->imageFieldName;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php foreach($model->formFields as $field):?>
+    <?php foreach($model->getAttributeList(true) as $field):?>
         <?= $form->field($model, $field) ?>
     <?php endforeach;?>
     
