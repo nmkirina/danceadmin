@@ -2,12 +2,12 @@
 
 namespace frontend\controllers;
 
-use frontend\controllers\BaseCrudController;
 use app\models\News;
+use frontend\controllers\BaseUploadController;
 /**
  * NewsController implements the CRUD actions for News model.
  */
-class NewsController extends BaseCrudController
+class NewsController extends BaseUploadController
 {
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
@@ -18,5 +18,9 @@ class NewsController extends BaseCrudController
     protected function findById($id)
     {
         return News::findOne($id);
+    }
+    
+    protected function getNewModel() {
+        return new $News();
     }
 }

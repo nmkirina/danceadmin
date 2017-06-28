@@ -16,7 +16,6 @@ class MongodbModel extends ActiveRecord
     
     public $imageFiles;
     public $imageFieldName = null;
-    public $formFields;
     protected $imageNameList;
     
     
@@ -129,7 +128,7 @@ class MongodbModel extends ActiveRecord
     public function getAttributeList($form = false)
     {
         $attributes = $this->attributes();
-        if($this->collectionName()[1] != 'gallery'){
+        if($this->collectionName()[1] != 'album'){
             $attributes = $this->unsetAttribute($attributes, '_id');
         }
         if($this->imageFieldName){

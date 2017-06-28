@@ -36,7 +36,8 @@ class Album extends MongodbModel
     public function rules()
     {
         return [
-            
+            ['_id', 'unique'],
+            ['_id', 'required']
         ];
     }
 

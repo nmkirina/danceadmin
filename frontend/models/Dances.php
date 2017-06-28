@@ -43,7 +43,6 @@ class Dances extends MongodbModel
     public function __construct($config = array()) {
         parent::__construct($config);
         $this->imageFieldName = 'photo';
-        $this->formFields = ['name', 'description', 'start_year'];
     }
     
     /**

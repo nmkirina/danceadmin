@@ -3,12 +3,11 @@
 namespace frontend\controllers;
 
 use app\models\Staff;
-use frontend\controllers\BaseCrudController;
-
+use frontend\controllers\BaseUploadController;
 /**
  * StaffController implements the CRUD actions for Staff model.
  */
-class StaffController extends BaseCrudController
+class StaffController extends BaseUploadController
 {
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
@@ -18,5 +17,9 @@ class StaffController extends BaseCrudController
     
     protected function findById($id) {
         return Staff::findOne($id);
+    }
+    
+    protected function getNewModel() {
+        return new Staff();
     }
 }

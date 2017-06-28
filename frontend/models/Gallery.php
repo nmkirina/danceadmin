@@ -54,7 +54,6 @@ class Gallery extends MongodbModel
     public function __construct($config = array()) {
         parent::__construct($config);
         $this->imageFieldName = 'name';
-        $this->formFields = ['_id', 'name', 'album'];
     }
 
         public function getAlbumList()

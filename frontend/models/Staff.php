@@ -49,4 +49,9 @@ class Staff extends MongodbModel
             '_id' => Yii::t('app', 'ID'),
         ];
     }
+    
+    public function __construct($config = array()) {
+        parent::__construct($config);
+        $this->imageFieldName = 'photo';
+    }
 }
