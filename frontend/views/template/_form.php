@@ -17,7 +17,7 @@ $image = $model->imageFieldName;
     <?php endforeach;?>
     
     <?php if(isset($image)):?>
-        <?= $form->field($model, $image)->hiddenInput(['value' => $model->$image ? $model->$image : 'default value']);?>
+        <!--$form->field($model, $image)->hiddenInput(['value' => $model->$image ? $model->$image : 'default value']);-->
         <?php if(($model->$image)):?>
             <img src="<?='uploads/thumbs/sm_' . $model->$image?>">
         <?php endif;?>

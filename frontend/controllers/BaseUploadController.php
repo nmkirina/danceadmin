@@ -16,7 +16,7 @@ abstract class BaseUploadController extends BaseCrudController
             if(count($imageFiles) > 1) {
                 $this->createMany($imageFiles, $model);
             }
-            else {
+            elseif(count($imageFiles) == 1) {
                 $model->createModel(Yii::$app->request->post(), $imageFiles[0]);
             }
             return $this->redirect(['index']);

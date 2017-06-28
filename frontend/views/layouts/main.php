@@ -30,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Fresky',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -48,7 +48,7 @@ AppAsset::register($this);
             ['label' => 'Staff', 'url' => ['/staff/index']],
             ['label' => 'Album', 'url' => ['/album/index']],
             ['label' => 'Gallery', 'url' => ['/gallery/index']],
-            ['label' => 'Make thumb', 'url' => ['/gallery/makethumb']],
+//            ['label' => 'Make thumb', 'url' => ['/gallery/makethumb']],
         ];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

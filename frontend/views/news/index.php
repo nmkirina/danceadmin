@@ -1,6 +1,6 @@
 <?php
-echo $this->render('../template/index', ['title' => 'Dances', 
-    'modelname' => 'Dance',
+echo $this->render('../template/index', ['title' => 'News', 
+    'modelname' => 'News',
     'data' => [
         'dataProvider' => $dataProvider,
         'columns' => [

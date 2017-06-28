@@ -6,8 +6,8 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->render('_menu', ['title' => $modelname . 's']);
-$this->title = Yii::t('app', $modelname . 's');
+$this->render('_menu', ['title' => $modelname]);
+$this->title = Yii::t('app', $modelname);
 ?>
 <div class="gallery-index">
 
