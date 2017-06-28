@@ -6,9 +6,9 @@ use yii\helpers\Html;
 /* @var $model app\models\Album */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Album',
+    'modelClass' => ucfirst($model->collectionName()[1]),
 ]) . $model->_id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Albums'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', ucfirst($model->collectionName()[1]) . 's'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->_id, 'url' => ['view', 'id' => (string)$model->_id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'model' => $model
     ]) ?>
 
 </div>

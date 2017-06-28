@@ -40,6 +40,12 @@ class Dances extends MongodbModel
         ];
     }
 
+    public function __construct($config = array()) {
+        parent::__construct($config);
+        $this->imageFieldName = 'photo';
+        $this->formFields = ['name', 'description', 'start_year'];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -48,20 +54,5 @@ class Dances extends MongodbModel
         return [
             '_id' => Yii::t('app', 'ID'),
         ];
-    }
-    
-    public function setOptions($postArray)
-    {    
-        if(!key_exists('Dance', $postArray)) {
-                return false;
-        }
-        
-        $post = $postArray['Dance'];
-        $this->name = $post['name'];
-        $this->photo = $post['photo'];
-        $this->start_date = $post['description'];
-        $this->active = $post['start_year'];
-        
-        return true;
     }
 }

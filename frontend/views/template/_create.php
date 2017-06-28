@@ -6,15 +6,15 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Album */
 
-$this->title = Yii::t('app', 'Create Album');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Albums'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Create ' . ucfirst($model->collectionName()[1]));
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', ucfirst($model->collectionName()[1])), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="album-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('./template/_form', [
+    <?= $this->render('_form', [
         'model' => $model
     ]) ?>
 

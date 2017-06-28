@@ -6,15 +6,15 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->render('_menu', ['title' => $title]);
-$this->title = Yii::t('app', $title);
+$this->render('_menu', ['title' => $modelname . 's']);
+$this->title = Yii::t('app', $modelname . 's');
 ?>
 <div class="gallery-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create ' . $modelname), ['upload'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create ' . $modelname), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget($data); ?>
 </div>

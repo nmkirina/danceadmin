@@ -7,25 +7,25 @@ use Yii;
 
 abstract class BaseUploadController extends BaseCrudController
 {
-    public function actionUpload()
+    public function actionCreate()
     {
         $model = $this->model;
 
         if (Yii::$app->request->isPost) {
             $imageFiles = UploadedFile::getInstances($model, 'imageFiles');
-
-            foreach ($imageFiles as $file){
-                $newModel = $this->getNewModel();
-                $newModel->setOptions(Yii::$app->request->post());
-                $newModel->upload($file);
-                $newModel->save();
+            if(count($imageFiles) > 1) {
+                $this->createMany($imageFiles, $model);
+            }
+            else {
+                $model->createModel(Yii::$app->request->post(), $imageFiles[0]);
             }
             return $this->redirect(['index']);
         }
         return $this->render('create', ['model' => $model]);
     }
     
-    public function actionUpdate($id) {
+    public function actionUpdate($id) 
+    {
         
         $model = $this->findModel($id);
 
@@ -36,7 +36,6 @@ abstract class BaseUploadController extends BaseCrudController
             }
         }
         return $this->render('update', ['model' => $model]);
-        
     }
     
     public function actionDelete($id)
@@ -47,6 +46,14 @@ abstract class BaseUploadController extends BaseCrudController
     }
     
     abstract protected function getNewModel();
+    
+    protected function createMany($imageFiles, $newModel)
+    {
+        foreach ($imageFiles as $file){
+            $newModel->createModel(Yii::$app->request->post(), $file);
+            $newModel = $this->getNewModel();
+        }
+    }
 }
 
 

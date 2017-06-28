@@ -15,8 +15,10 @@ class MongodbModel extends ActiveRecord
     const HEIGHT = 120;
     
     public $imageFiles;
-    public $imageFieldName;
+    public $imageFieldName = null;
+    public $formFields;
     protected $imageNameList;
+    
     
     
     public function rules()
@@ -51,24 +53,6 @@ class MongodbModel extends ActiveRecord
         }
         return false;
     }
-
-
-//    public function uploadOld()
-//    {
-//        $this->imageNameList = [];
-//        $field = $this->imageFieldName;
-//        if ($this->validate()) { 
-//            foreach ($this->imageFiles as $file) {
-//                $this->$field .= '.' . $file->extension;
-//                $this->imageNameList[] = $this->$field;
-//                $file->saveAs( Yii::$app->params['uploadsPath'] . $this->$field);
-//            }
-//            self::makeThumbs($this->imageNameList);
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
     
     public static function makeThumbs($files = null)
     {
@@ -85,16 +69,6 @@ class MongodbModel extends ActiveRecord
         return $result;
     }
     
-    protected static function getFilesFromFolder($folder)
-    {
-        $filePaths = FileHelper::findFiles($folder, ['recursive' => false]);
-        $files = [];
-        foreach ($filePaths as $filePath){
-            $filePathArray = explode('/', $filePath);
-            $files[] = end($filePathArray);
-        }
-        return $files;
-    }
     
     public function setOptions($postArray)
     {
@@ -124,7 +98,14 @@ class MongodbModel extends ActiveRecord
         return Yii::$app->getSecurity()->generateRandomString(12) . '_' . substr(time(), 7);
     }
     
-     public function deleteFile($file)
+    public function createModel($post, $file)
+    {
+        $this->setOptions($post);
+        $this->upload($file);
+        return $this->save();
+    }
+
+    public function deleteFile($file)
     {
         if(file_exists($file)){
             return unlink($file);
@@ -144,4 +125,36 @@ class MongodbModel extends ActiveRecord
         $this->deleteFileAndThumb();
         $this->delete();
     }
+    
+    public function getAttributeList() 
+    {
+        $attributes = $this->attributes();
+        if($this->collectionName()[1] != 'gallery'){
+            $key = array_search('_id', $attributes);
+            unset($attributes[$key]);
+        }
+        if($this->imageFieldName){
+            $image = $this->imageFieldName;
+            $key = array_search($image, $attributes);
+            unset($attributes[$key]);
+            $attributes[] = [
+                'attribute' => $image,
+                'value' => '/uploads/thumbs/sm_' . $this->$image,
+                'format' => ['image']
+            ];
+        }
+        return $attributes;
+    }
+    
+    protected static function getFilesFromFolder($folder)
+    {
+        $filePaths = FileHelper::findFiles($folder, ['recursive' => false]);
+        $files = [];
+        foreach ($filePaths as $filePath){
+            $filePathArray = explode('/', $filePath);
+            $files[] = end($filePathArray);
+        }
+        return $files;
+    }
+    
 }

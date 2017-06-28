@@ -54,6 +54,7 @@ class Gallery extends MongodbModel
     public function __construct($config = array()) {
         parent::__construct($config);
         $this->imageFieldName = 'name';
+        $this->formFields = ['_id', 'name', 'album'];
     }
 
         public function getAlbumList()
@@ -97,17 +98,5 @@ class Gallery extends MongodbModel
             ];
         }
         return $album;
-    }
-     
-    public function dbSave()
-    {
-        foreach ($this->imageNameList as $imageName){
-            $collection = Yii::$app->mongodb->getCollection('gallery');
-            $collection->insert([
-                        'album' => $this->album,
-                        'name' => $imageName
-                    ]);
-        }
-        return true;
     }
 }

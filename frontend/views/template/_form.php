@@ -12,14 +12,14 @@ $image = $model->imageFieldName;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php foreach($formFields as $field):?>
+    <?php foreach($model->formFields as $field):?>
         <?= $form->field($model, $field) ?>
     <?php endforeach;?>
     
     <?php if(isset($image)):?>
-        <?= $form->field($model, $field)->hiddenInput(['value' => $model->$image ? $model->$image : 'default value']);?>
-        <?php if(($image)):?>
-            <img src="<?='uploads/thumbs/sm_' . $image?>">
+        <?= $form->field($model, $image)->hiddenInput(['value' => $model->$image ? $model->$image : 'default value']);?>
+        <?php if(($model->$image)):?>
+            <img src="<?='uploads/thumbs/sm_' . $model->$image?>">
         <?php endif;?>
 
         <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>

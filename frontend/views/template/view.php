@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Album */
 
-$this->title = $model->_id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Albums'), 'url' => ['index']];
+$this->title = ucfirst($model->collectionName()[1]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', ucfirst($model->collectionName()[1]) . 's'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="album-view">
@@ -27,11 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
-        'attributes' => [
-            '_id',
-            'description',
-            'date',
-        ],
+        'attributes' => $model->getAttributeList(),
     ]) ?>
 
 </div>
