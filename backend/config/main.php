@@ -15,7 +15,11 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
+        'db' => require(__DIR__ . '/../../common/config/db.php'),
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -37,14 +41,16 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                    '<controller:[\w-]+>/<action:[\w-]+>' => '<controller>/<action>',
+                    '<controller:[\w-]+>' => '<module>/<controller>',
             ],
         ],
-        */
+        
     ],
     'params' => $params,
 ];
