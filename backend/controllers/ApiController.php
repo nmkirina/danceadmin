@@ -2,8 +2,6 @@
 
 namespace backend\controllers;
 
-use frontend\models\Staff;
-use Yii;
 use backend\controllers\BaseApiController;
 
 
@@ -40,27 +38,27 @@ class ApiController extends BaseApiController
         return $this->getAll('staff');
     }
     
-    public function  actionDanceById()
+    public function  actionDancebyid()
     {
         return $this->getById('dances');
     }
 
-    public function  actionAlbumById()
+    public function  actionAlbumbyid()
     {
         return $this->getById('album');
     }
     
-    public function  actionGalleryById()
+    public function  actionGallerybyid()
     {
         return $this->getById('gallery');
     }
     
-    public function  actionHistoryById()
+    public function  actionHistorybyid()
     {
         return $this->getById('history');
     }
     
-    public function  actionNewsById()
+    public function  actionNewsbyid()
     {
         return $this->getById('news');
     }

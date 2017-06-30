@@ -5,8 +5,12 @@ use yii\base\Controller;
 use yii\web\Response;
 use yii\mongodb\Query;
 use Yii;
+use common\models\DanceException;
+use common\models\DanceResponse;
 
 class BaseApiController extends Controller{
+    
+    const MODELS_NAMESPACE = 'frontend\models\\';
     
     public function init() {
         parent::init();
@@ -18,13 +22,16 @@ class BaseApiController extends Controller{
     {
         $query = new Query();
         $query->select([])->from($model);
-        return $query->all();
+        $result = $query->all();
+        return $this->response($result);
     }
     
     public function getById($model)
     {
-        $model = "frontend\models\ . ucfirst($model)";
-        return $model::findOne($this->getParams('id'));
+        $model = self::MODELS_NAMESPACE . ucfirst($model);
+        $result = $model::findOne($this->getParams('id'));
+        return $this->response($result);
+        
     }
     
     protected function getParams($param)
@@ -35,6 +42,14 @@ class BaseApiController extends Controller{
                 return $post[$param];
             }
         }
+    }
+    
+    protected function response($result)
+    {
+        if($result){
+            return DanceResponse::send($result);
+        }
+        return DanceException::send(DanceException::NO_RESPONSE);
     }
 }
 
