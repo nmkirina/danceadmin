@@ -12,6 +12,8 @@ class BaseApiController extends Controller{
     
     const MODELS_NAMESPACE = 'frontend\models\\';
     
+    protected $required = null;
+    
     public function init() {
         parent::init();
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -32,6 +34,23 @@ class BaseApiController extends Controller{
         $result = $model::findOne($this->getParams('id'));
         return $this->response($result);
         
+    }
+    
+    public function bindActionParams($action, $params) {
+        parent::bindActionParams($action, $params);
+        $post = Yii::$app->request->post();
+        $reflection    = new \ReflectionMethod(get_class($this), $action->actionMethod);
+        $method_params = $reflection->getParameters();
+        $sorted_params = [];
+        
+        foreach ($method_params as $method_param){
+            $name = $method_param->getName();
+             if(!key_exists($name, $post)){
+                 $this->required[] = $name;
+             }
+             $sorted_params[] = $name;
+        }
+        return $sorted_params;
     }
     
     protected function getParams($param)
