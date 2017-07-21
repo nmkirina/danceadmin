@@ -9,7 +9,7 @@ echo $this->render('../template/index', ['title' => 'Galleries',
             [
                 'attribute' => 'album',
                 'format' => 'text',
-                'filter' => app\models\Gallery::getAlbumList(),
+                'filter' => frontend\models\Gallery::getAlbumList(),
             ],
             [
                 'format' => ['image'],

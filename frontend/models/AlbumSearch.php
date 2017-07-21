@@ -2,13 +2,12 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Gallery;
+use frontend\models\Gallery;
 
 /**
- * AlbumSearch represents the model behind the search form about `app\models\Gallery`.
+ * AlbumSearch represents the model behind the search form about `frontend\models\Gallery`.
  */
 class AlbumSearch extends Gallery
 {

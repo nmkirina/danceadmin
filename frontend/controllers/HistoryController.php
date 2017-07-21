@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use app\models\History;
+use frontend\models\History;
 use frontend\controllers\BaseCrudController;
 
 /**

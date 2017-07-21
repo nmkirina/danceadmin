@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use app\models\News;
+use frontend\models\News;
 use frontend\controllers\BaseUploadController;
 /**
  * NewsController implements the CRUD actions for News model.

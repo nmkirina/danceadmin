@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\controllers\BaseUploadController;
-use app\models\Gallery;
+use frontend\models\Gallery;
 use app\models\AlbumSearch;
 
 /**

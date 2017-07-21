@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\controllers\BaseCrudController;
-use app\models\Album;
+use frontend\models\Album;
 /**
  * AlbumController implements the CRUD actions for Album model.
  */

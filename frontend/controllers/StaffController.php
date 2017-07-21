@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use app\models\Staff;
+use frontend\models\Staff;
 use frontend\controllers\BaseUploadController;
 /**
  * StaffController implements the CRUD actions for Staff model.

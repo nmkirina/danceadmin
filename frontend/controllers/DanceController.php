@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use app\models\Dances;
+use frontend\models\Dances;
 use frontend\controllers\BaseUploadController;
 
 /**
