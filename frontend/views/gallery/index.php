@@ -1,8 +1,7 @@
 <?php
 echo $this->render('../template/index', ['title' => 'Galleries', 
-    'modelname' => 'Gallery', 'data' => [
+    'modelname' => 'Gallery', 
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
@@ -18,4 +17,4 @@ echo $this->render('../template/index', ['title' => 'Galleries',
             ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]]);
+    ]);

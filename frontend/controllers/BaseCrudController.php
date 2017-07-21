@@ -78,6 +78,9 @@ abstract class BaseCrudController extends \yii\web\Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => $this->query,
+            'pagination' => [
+                'pageSize' => 3,
+            ]
         ]);
 
         return $this->render('index', [

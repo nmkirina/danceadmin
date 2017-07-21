@@ -37,7 +37,9 @@ class Album extends MongodbModel
     {
         return [
             ['_id', 'unique'],
-            ['_id', 'required']
+            ['_id', 'required'],
+            [['description', 'date'], 'required'],
+            [['_id'], 'string'],
         ];
     }
 

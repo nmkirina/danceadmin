@@ -16,5 +16,9 @@ $this->title = Yii::t('app', $modelname);
     <p>
         <?= Html::a(Yii::t('app', 'Create ' . $modelname), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget($data); ?>
+    <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'options' => ['style' => 'max-height: 10px;'],
+                        'columns' => $columns
+                    ]); ?>
 </div>

@@ -36,7 +36,7 @@ class Staff extends MongodbModel
     public function rules()
     {
         return [
-            
+            [['name', 'start_date', 'active'], 'required']
         ];
     }
 

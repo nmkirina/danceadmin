@@ -21,7 +21,8 @@
         "yiisoft/yii2-mongodb": "^2.1",
         "2amigos/yii2-gallery-widget": "~1.0",
         "yiisoft/yii2-imagine": "*",
-        "linslin/yii2-curl": "*"
+        "linslin/yii2-curl": "*",
+        "yiisoft/yii2-jui": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -68,7 +68,13 @@ class MongodbModel extends ActiveRecord
         return $result;
     }
     
-    
+    public function yearsList()
+    {
+        $currentYear = date("Y");
+        for($i = $currentYear; $i >= Yii::$app->params['startYear'];$list[$i] = $i, $i--);
+        return $list;
+    }
+
     public function setOptions($postArray)
     {
         $modelName = ucfirst($this->collectionName()[1]);
@@ -97,16 +103,18 @@ class MongodbModel extends ActiveRecord
         return Yii::$app->getSecurity()->generateRandomString(12) . '_' . substr(time(), 7);
     }
     
-    public function createModel($post, $file)
+    public function createModel($post, $file = null)
     {
         $this->setOptions($post);
-        $this->upload($file);
+        if($file) {
+            $this->upload($file);
+        }
         return $this->save();
     }
 
     public function deleteFile($file)
     {
-        if(file_exists($file)){
+        if(is_file($file)){
             return unlink($file);
         }
         return false;

@@ -37,7 +37,8 @@ class Gallery extends MongodbModel
     public function rules()
     {
         return [
-            
+            [['name'], 'required'],
+            [['name'], 'string'],
         ];
     }
 

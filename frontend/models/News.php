@@ -35,7 +35,7 @@ class News extends MongodbModel
     public function rules()
     {
         return [
-            
+            [['title', 'text', 'date'], 'required']
         ];
     }
 

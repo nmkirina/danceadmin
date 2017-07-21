@@ -18,6 +18,8 @@ abstract class BaseUploadController extends BaseCrudController
             }
             elseif(count($imageFiles) == 1) {
                 $model->createModel(Yii::$app->request->post(), $imageFiles[0]);
+            } else {
+                $model->createModel(Yii::$app->request->post());
             }
             return $this->redirect(['index']);
         }
@@ -45,8 +47,6 @@ abstract class BaseUploadController extends BaseCrudController
         return $this->redirect(['index']);
     }
     
-    abstract protected function getNewModel();
-    
     protected function createMany($imageFiles, $newModel)
     {
         foreach ($imageFiles as $file){
@@ -54,6 +54,8 @@ abstract class BaseUploadController extends BaseCrudController
             $newModel = $this->getNewModel();
         }
     }
+    
+    abstract protected function getNewModel();
 }
 
 

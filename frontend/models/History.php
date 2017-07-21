@@ -35,7 +35,8 @@ class History extends MongodbModel
     public function rules()
     {
         return [
-            
+            [['text', 'name'], 'required'],
+            [['name'], 'string']
         ];
     }
 

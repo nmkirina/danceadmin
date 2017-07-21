@@ -36,7 +36,8 @@ class Dances extends MongodbModel
     public function rules()
     {
         return [
-            
+            [['name', 'description'], 'required'],
+            [['name'], 'string'],
         ];
     }
 
