@@ -4,7 +4,8 @@ namespace frontend\models;
 
 use Yii;
 use frontend\models\MongodbModel;
-
+use yii\mongodb\Query;
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for collection "album".
  *
@@ -53,4 +54,10 @@ class Album extends MongodbModel
         ];
     }
     
+    public static function albumList()
+    {
+        $query = new Query();
+        $query->select(['_id'])->from('album');
+        return ArrayHelper::map($query->all(), '_id', '_id');
+    }
 }

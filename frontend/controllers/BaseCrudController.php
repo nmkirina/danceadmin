@@ -31,7 +31,7 @@ abstract class BaseCrudController extends \yii\web\Controller
                         'roles' => ['?']
                     ],
                     [
-                        'actions' => ['index', 'create', 'delete', 'update', 'view', 'gallery', 'upload', 'makethumb'],
+                        'actions' => ['index', 'create', 'delete', 'update', 'view', 'gallery', 'upload', 'makethumb', 'albums'],
                         'allow' => true,
                         'roles' => ['@']
                     ]

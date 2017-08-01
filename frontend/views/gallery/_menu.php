@@ -1,6 +1,6 @@
 <?php
 $titles = [
-    'Photo list' => 'gallery', 
+    'Photo list' => 'albums', 
     'Galleries' => 'index', 
     ];
 foreach ($titles as $item => $url){

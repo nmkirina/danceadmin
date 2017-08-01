@@ -6,6 +6,7 @@ use Yii;
 use frontend\controllers\BaseUploadController;
 use frontend\models\Gallery;
 use app\models\AlbumSearch;
+use frontend\models\Album;
 
 /**
  * GalleryController implements the CRUD actions for Gallary model.
@@ -29,9 +30,14 @@ class GalleryController extends BaseUploadController
         ]);
     }
     
-    public function actionGallery()
+    public function actionGallery($id)
     {
-        return $this->render('gallery', ['albums' => Gallery::getAlbums()]);
+//        $gallery = 
+    }
+    
+    public function actionAlbums()
+    {
+        return $this->render('albums', ['albums' => Album::albumList()]);
     }
     
     public function actionMakethumb()
