@@ -83,6 +83,9 @@ class User extends \yii\mongodb\ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
+        if(is_array($id) && key_exists('$oid', $id)){
+            $id = $id['$oid'];
+        }
         return self::findOne(['_id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
