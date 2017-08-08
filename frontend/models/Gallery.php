@@ -7,9 +7,12 @@ use frontend\models\MongodbModel;
 use yii\mongodb\Query;
 use yii\helpers\ArrayHelper;
 /**
- * This is the model class for collection "gallary".
+ * This is the model class for collection "gallery".
  *
  * @property \MongoDB\BSON\ObjectID|string $_id
+ * @property mixed $name
+ * @property mixed $fullurl
+ * @property mixed $album
  */
 class Gallery extends MongodbModel
 {
@@ -27,7 +30,10 @@ class Gallery extends MongodbModel
     public function attributes()
     {
         return [
-            '_id', 'name', 'album'
+            '_id',
+            'name',
+            'fullurl',
+            'album',
         ];
     }
 
@@ -37,8 +43,9 @@ class Gallery extends MongodbModel
     public function rules()
     {
         return [
-            [['name'], 'required'],
             [['name'], 'string'],
+            [['name'], 'required'],
+            [['name', 'fullurl', 'album'], 'safe']
         ];
     }
 
@@ -49,13 +56,16 @@ class Gallery extends MongodbModel
     {
         return [
             '_id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'fullurl' => Yii::t('app', 'Fullurl'),
+            'album' => Yii::t('app', 'Album'),
         ];
     }
     
     public function __construct($config = array()) {
         parent::__construct($config);
         $this->imageFieldName = 'name';
-    }
+}
 
         public function getAlbumList()
     {
@@ -87,8 +97,8 @@ class Gallery extends MongodbModel
              $items = [];
              foreach ($files as $file) {
                $items[] = [
-                   'url' => '/uploads/' . $file,
-                   'src' => '/uploads/thumbs/sm_' . $file,
+                   'url' => '/gallery/' . $file,
+                   'src' => '/thumbs/sm_' . $file,
                    'options' => array('title' => 'Title')
                ];
             }

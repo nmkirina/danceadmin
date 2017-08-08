@@ -16,6 +16,7 @@ class m170721_105540_create_dances_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->tring(),
             'photo' => $this->string(),
+            'fullurl' => $this->string(),
             'description' => $this->text(),
             'start_year' => $this->integer(),
         ]);

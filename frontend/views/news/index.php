@@ -7,6 +7,7 @@ echo $this->render('../template/index', ['title' => 'News',
 
             'title',
             'text',
+            'fullurl:url',
             [
                 'format' => ['image'],
                 'value' => function($data){return $data->imageUrl;} 

@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'album')->dropDownList($model->getAlbumList()); ?>
     <?= $form->field($model, 'name')->hiddenInput(['value' => $model->$image ? $model->$image : 'default value']);?>
     <?php if($model->name):?>
-        <img src="<?='/uploads/thumbs/sm_' . $model->$image?>">
+        <img src="<?='/thumbs/sm_' . $model->$image?>">
     <?php endif;?>
     
     <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>

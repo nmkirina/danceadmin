@@ -15,6 +15,7 @@ class m170721_105843_create_gallery_table extends Migration
         $this->createTable('gallery', [
             'id' => $this->primaryKey(),
             'name' => $this->tring(),
+            'fullurl' => $this->tring(),
             'album' => $this->string(),
         ]);
     }

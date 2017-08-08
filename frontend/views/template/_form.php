@@ -23,14 +23,14 @@ $image = $model->imageFieldName;
             <?= $form->field($model, $field)->dropDownList($model->yearsList()); ?>
         <?php elseif($field == 'active'):?>
             <?= $form->field($model, $field)->radioList([0 => 'Активный участник', 1 => 'Неактивный участник']); ?>
-        <?php else:?>
+        <?php elseif($field != 'fullurl'):?>
             <?= $form->field($model, $field); ?>
         <?php endif;?>    
     <?php endforeach;?>
     
     <?php if(isset($image)):?>
         <?php if(($model->$image)):?>
-            <img src="<?='/uploads/thumbs/sm_' . $model->$image?>">
+            <img src="<?='/thumbs/sm_' . $model->$image?>">
         <?php endif;?>
         
         <?= $form->field($model, 'imageFiles[]')

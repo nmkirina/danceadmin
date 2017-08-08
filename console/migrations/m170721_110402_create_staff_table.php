@@ -16,6 +16,7 @@ class m170721_110402_create_staff_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(),
             'photo' => $this->string(),
+            'fullurl' => $this->string(),
             'start_date' => $this->date(),
             'active' => $this->integer(),
         ]);

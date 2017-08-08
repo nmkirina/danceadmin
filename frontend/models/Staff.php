@@ -9,6 +9,11 @@ use frontend\models\MongodbModel;
  * This is the model class for collection "staff".
  *
  * @property \MongoDB\BSON\ObjectID|string $_id
+ * @property mixed $name
+ * @property mixed $photo
+ * @property mixed $fullurl
+ * @property mixed $start_date
+ * @property mixed $active
  */
 class Staff extends MongodbModel
 {
@@ -26,7 +31,12 @@ class Staff extends MongodbModel
     public function attributes()
     {
         return [
-            '_id', 'name', 'photo', 'start_date', 'active'
+            '_id',
+            'name',
+            'photo',
+            'fullurl',
+            'start_date',
+            'active',
         ];
     }
 
@@ -36,6 +46,7 @@ class Staff extends MongodbModel
     public function rules()
     {
         return [
+            [['name', 'photo', 'fullurl', 'start_date', 'active'], 'safe'],
             [['name', 'start_date', 'active'], 'required']
         ];
     }
@@ -47,6 +58,11 @@ class Staff extends MongodbModel
     {
         return [
             '_id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'photo' => Yii::t('app', 'Photo'),
+            'fullurl' => Yii::t('app', 'Fullurl'),
+            'start_date' => Yii::t('app', 'Start Date'),
+            'active' => Yii::t('app', 'Active'),
         ];
     }
     

@@ -17,6 +17,7 @@ class m170721_110208_create_news_table extends Migration
             'title' => $this->string(),
             'text' => $this->text(),
             'photo' => $this->string(),
+            'fullurl' => $this->string(),
             'date' => $this->date(),
         ]);
     }

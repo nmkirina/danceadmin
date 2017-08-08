@@ -5,6 +5,7 @@ echo $this->render('../template/index', ['title' => 'Galleries',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
+            'fullurl:url',
             [
                 'attribute' => 'album',
                 'format' => 'text',

@@ -8,6 +8,11 @@ use frontend\models\MongodbModel;
  * This is the model class for collection "news".
  *
  * @property \MongoDB\BSON\ObjectID|string $_id
+ * @property mixed $title
+ * @property mixed $text
+ * @property mixed $photo
+ * @property mixed $fullurl
+ * @property mixed $date
  */
 class News extends MongodbModel
 {
@@ -25,7 +30,12 @@ class News extends MongodbModel
     public function attributes()
     {
         return [
-            '_id', 'title', 'text', 'photo', 'date'
+            '_id',
+            'title',
+            'text',
+            'photo',
+            'fullurl',
+            'date',
         ];
     }
 
@@ -35,6 +45,7 @@ class News extends MongodbModel
     public function rules()
     {
         return [
+            [['title', 'text', 'photo', 'fullurl', 'date'], 'safe'],
             [['title', 'text', 'date'], 'required']
         ];
     }
@@ -46,6 +57,11 @@ class News extends MongodbModel
     {
         return [
             '_id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Title'),
+            'text' => Yii::t('app', 'Text'),
+            'photo' => Yii::t('app', 'Photo'),
+            'fullurl' => Yii::t('app', 'Fullurl'),
+            'date' => Yii::t('app', 'Date'),
         ];
     }
     

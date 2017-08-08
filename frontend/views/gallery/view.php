@@ -30,9 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             '_id',
             'name',
+            'fullurl:url',
             [
                 'attribute' => 'name',
-                'value' => '/uploads/' . $model->name,
+                'value' => '/gallery/' . $model->name,
                 'format' => ['image',['width' => '100', 'height' => '100']]
             ],
             'album',

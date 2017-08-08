@@ -9,6 +9,11 @@ use frontend\models\MongodbModel;
  * This is the model class for collection "dances".
  *
  * @property \MongoDB\BSON\ObjectID|string $_id
+ * @property mixed $name
+ * @property mixed $photo
+ * @property mixed $fullurl
+ * @property mixed $description
+ * @property mixed $start_year
  */
 class Dances extends MongodbModel
 {
@@ -26,18 +31,24 @@ class Dances extends MongodbModel
     public function attributes()
     {
         return [
-            '_id', 'name', 'photo', 'description', 'start_year'
+            '_id',
+            'name',
+            'photo',
+            'fullurl',
+            'description',
+            'start_year',
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['name', 'description'], 'required'],
-            [['name'], 'string'],
+            [['name', 'photo', 'description', 'start_year'], 'safe'],
+            [['name', 'description', 'start_year'], 'required'],
+            
         ];
     }
 
@@ -53,6 +64,11 @@ class Dances extends MongodbModel
     {
         return [
             '_id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'photo' => Yii::t('app', 'Photo'),
+            'fullurl' => Yii::t('app', 'Fullurl'),
+            'description' => Yii::t('app', 'Description'),
+            'start_year' => Yii::t('app', 'Start Year'),
         ];
     }
 }

@@ -8,8 +8,8 @@ use Yii;
 
 class MongodbModel extends ActiveRecord
 {
-    const UPLOADS = 'uploads/';
-    const THUMBS = 'uploads/thumbs/';
+    const UPLOADS = 'gallery/';
+    const THUMBS = 'thumbs/';
     const THUMBS_PREFIX = 'sm_';
     const WIDTH =  120;
     const HEIGHT = 120;
@@ -46,7 +46,8 @@ class MongodbModel extends ActiveRecord
         $field = $this->imageFieldName;
         if($this->validate()){
             $this->$field = $this->generateName() . '.' . $file->extension;
-            $file->saveAs( Yii::$app->params['uploadsPath'] . $this->$field);
+            $this->fullurl = Yii::$app->urlManager->createAbsoluteUrl('') . self::UPLOADS . $this->$field;
+            $file->saveAs( Yii::$app->params['uploadsPath'] . self::UPLOADS . $this->$field);
             self::makeThumbs([$this->$field]);
             return true;
         }
@@ -62,7 +63,7 @@ class MongodbModel extends ActiveRecord
             $result = [
                     'file' => $file,
                     'result' => Image::thumbnail(self::UPLOADS . $file, self::WIDTH, self::HEIGHT)
-                        ->save(Yii::$app->params['uploadsPath'] . '/thumbs/sm_' . $file)
+                        ->save(Yii::$app->params['uploadsPath'] . '/' . self::THUMBS . 'sm_' . $file)
             ];
         }
         return $result;
@@ -95,7 +96,7 @@ class MongodbModel extends ActiveRecord
     public function getImageUrl()
     {
         $field = $this->imageFieldName;
-        return \Yii::$app->request->BaseUrl . '/uploads/thumbs/sm_' . $this->$field;
+        return \Yii::$app->request->BaseUrl . '/thumbs/sm_' . $this->$field;
     }
     
     public function generateName()
@@ -145,7 +146,7 @@ class MongodbModel extends ActiveRecord
             if(!$form){
                 $attributes[] = [
                     'attribute' => $image,
-                    'value' => '/uploads/thumbs/sm_' . $this->$image,
+                    'value' => '/thumbs/sm_' . $this->$image,
                     'format' => ['image']
                 ];
             }
