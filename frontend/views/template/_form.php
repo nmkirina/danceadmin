@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Album */
@@ -20,7 +21,7 @@ $image = $model->imageFieldName;
             'dateFormat' => 'yyyy-MM-dd',
         ]) ?>  
         <?php elseif(in_array($field, Yii::$app->params['yearsFields'])):?>
-            <?= $form->field($model, $field)->dropDownList($model->yearsList()); ?>
+            <?= $form->field($model, $field)->dropDownList($model->yearsList()); ?>            
         <?php elseif($field == 'active'):?>
             <?= $form->field($model, $field)->radioList([0 => 'Активный участник', 1 => 'Неактивный участник']); ?>
         <?php elseif($field != 'fullurl'):?>
@@ -32,9 +33,8 @@ $image = $model->imageFieldName;
         <?php if(($model->$image)):?>
             <img src="<?='/thumbs/sm_' . $model->$image?>">
         <?php endif;?>
-        
-        <?= $form->field($model, 'imageFiles[]')
-                ->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+            <?= $form->field($model, 'imageFiles[]')->widget(FileInput::classname(), 
+                    ['options' => ['accept' => 'image/*']]);?>
     <?php endif;?>
 
     <div class="form-group">

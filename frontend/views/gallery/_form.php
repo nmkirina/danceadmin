@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Gallery */
@@ -18,7 +19,8 @@ use yii\widgets\ActiveForm;
         <img src="<?='/thumbs/sm_' . $model->$image?>">
     <?php endif;?>
     
-    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+    <?= $form->field($model, 'imageFiles[]')->widget(FileInput::classname(), 
+                    ['options' => ['multiple' => true, 'accept' => 'image/*']]);?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
