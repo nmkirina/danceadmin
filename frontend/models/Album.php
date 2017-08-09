@@ -51,6 +51,8 @@ class Album extends MongodbModel
     {
         return [
             '_id' => Yii::t('app', 'Title'),
+            'description' => Yii::t('app', 'Description'),
+            'date' => Yii::t('app', 'Date'),
         ];
     }
     

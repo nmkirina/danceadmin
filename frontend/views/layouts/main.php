@@ -30,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Fresky',
+        'brandLabel' => Yii::t('app', 'Fresky'),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -38,22 +38,22 @@ AppAsset::register($this);
     ]);
     $menuItems = [];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
     } else {
         $menuItems = [
-            ['label' => 'Dances', 'url' => ['/dance/index']],
-            ['label' => 'History', 'url' => ['/history/index']],
-            ['label' => 'News', 'url' => ['/news/index']],
-            ['label' => 'Staff', 'url' => ['/staff/index']],
-            ['label' => 'Album', 'url' => ['/album/index']],
-            ['label' => 'Gallery', 'url' => ['/gallery/index']],
+            ['label' => Yii::t('app', 'Dances'), 'url' => ['/dance/index']],
+            ['label' => Yii::t('app', 'History'), 'url' => ['/history/index']],
+            ['label' => Yii::t('app', 'News'), 'url' => ['/news/index']],
+            ['label' => Yii::t('app', 'Staff'), 'url' => ['/staff/index']],
+            ['label' => Yii::t('app', 'Album'), 'url' => ['/album/index']],
+            ['label' => Yii::t('app', 'Gallery'), 'url' => ['/gallery/index']],
 //            ['label' => 'Make thumb', 'url' => ['/gallery/makethumb']],
         ];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                Yii::t('app', 'Logout') .  '(' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

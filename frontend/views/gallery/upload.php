@@ -1,6 +1,6 @@
 <?php
 use yii\widgets\ActiveForm;
-    $this->render('_menu', ['title' => 'Upload']);
+    $this->render('_menu', ['title' => Yii::t('app', 'Upload')]);
 ?>
 <div class="gallery-create">
 

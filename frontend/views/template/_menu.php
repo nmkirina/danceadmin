@@ -1,8 +1,5 @@
 <?php
-$titles = [
-    'Photo list' => 'albums', 
-    'Galleries' => 'index', 
-    ];
+$titles = [ ];
 foreach ($titles as $item => $url){
     if($title == $item){
         $this->params['breadcrumbs'][] = ['label' => Yii::t('app', $item)];

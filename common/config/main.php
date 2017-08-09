@@ -1,6 +1,7 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'language' => 'ru-RU',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -14,5 +15,21 @@ return [
                     '<controller:[\w-]+>' => '<module>/<controller>',
             ],
         ],
+        'i18n' => [
+            'translations' => [
+                'frontend*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        ]
+                ],
+                'backend*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                ],
+            ],
+        ],
     ],
+    
 ];

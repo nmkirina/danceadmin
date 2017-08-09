@@ -8,8 +8,11 @@ use yii\helpers\Html;
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Gallery',
 ]) . $model->name;
-$this->render('_menu', ['title' => 'Update']);
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => (string)$model->_id]];
+$this->render('_menu', ['title' => Yii::t('app', 'Update')]);
+$this->params['breadcrumbs'][] = [
+                'label' => Yii::t('app', '{modelname}', ['modelname' => $model->name]), 
+                'url' => ['view', 'id' => (string)$model->_id]
+        ];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="gallery-update">

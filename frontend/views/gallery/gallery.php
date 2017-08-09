@@ -1,4 +1,4 @@
-<?php $this->render('_menu', ['title' => 'Photo list'])?>
+<?php $this->render('_menu', ['title' => Yii::t('app', 'Photo list')])?>
 <ul>
 <?php foreach ($albums as $album):?>
     <li class="album-link">

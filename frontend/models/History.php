@@ -47,6 +47,10 @@ class History extends MongodbModel
     {
         return [
             '_id' => Yii::t('app', 'ID'),
+            'year' => Yii::t('app', 'Year'),
+            'text' => Yii::t('app', 'Text'),
+            'name' => Yii::t('app', 'Name'),
+            'description' => Yii::t('app', 'Description'),
         ];
     }
 }

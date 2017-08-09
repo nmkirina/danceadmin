@@ -1,7 +1,7 @@
 <?php
 $titles = [
-    'Photo list' => 'albums', 
-    'Galleries' => 'index', 
+    Yii::t('app', 'Photo list') => 'albums', 
+    Yii::t('app', 'Galleries') => 'index', 
     ];
 foreach ($titles as $item => $url){
     if($title == $item){

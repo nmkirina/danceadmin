@@ -1,4 +1,4 @@
-<?php $this->render('_menu', ['title' => 'Photo list'])?>
+<?php $this->render('_menu', ['title' => Yii::t('app', 'Photo list')])?>
 <ul class="list-group">
     <?php foreach($albums as $album):?>
         <li class="list-group-item justify-content-between">

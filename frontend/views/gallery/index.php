@@ -1,5 +1,5 @@
 <?php
-echo $this->render('../template/index', ['title' => 'Galleries', 
+echo $this->render('../template/index', ['title' => Yii::t('app', 'Galleries'), 
     'modelname' => 'Gallery', 
         'dataProvider' => $dataProvider,
         'columns' => [

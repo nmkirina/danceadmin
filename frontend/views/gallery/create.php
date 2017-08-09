@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 
-echo $this->render('_menu', ['title' => 'Create']);
+echo $this->render('_menu', ['title' => Yii::t('app','Create')]);
 ?>
 <div class="gallery-create">
 
