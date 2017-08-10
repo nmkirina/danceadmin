@@ -27,6 +27,13 @@ class MongodbModel extends ActiveRecord
         ];
     }
     
+    public function attributeLabels()
+    {
+        return [
+            'imageFiles' => Yii::t('app', 'Image files'),
+            ];
+    }
+    
     public function updateModel()
     {
         if(key_exists(0, $this->imageFiles))
