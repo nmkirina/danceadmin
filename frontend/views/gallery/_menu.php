@@ -1,6 +1,6 @@
 <?php
 $titles = [
-    Yii::t('app', 'Photo list') => 'albums', 
+    Yii::t('app', 'Albums') => 'albums', 
     Yii::t('app', 'Galleries') => 'index', 
     ];
 foreach ($titles as $item => $url){

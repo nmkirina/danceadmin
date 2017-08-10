@@ -87,25 +87,13 @@ class Gallery extends MongodbModel
             ],
             
         ]]);
-        return self::createItemsForGallery($galleries);
+        return self::albumMap($galleries);
     }
     
-    protected static function createItemsForGallery($galleries)
+    protected static function albumMap($galleries)
     {
         foreach ($galleries as $gallery) {
-             $files = $gallery['name']; 
-             $items = [];
-             foreach ($files as $file) {
-               $items[] = [
-                   'url' => '/gallery/' . $file,
-                   'src' => '/thumbs/sm_' . $file,
-                   'options' => array('title' => 'Title')
-               ];
-            }
-            $album[] = [
-                'album' => $gallery['_id'],
-                'items' => $items
-            ];
+            $album[$gallery['_id']] = count($gallery['name']);
         }
         return $album;
     }

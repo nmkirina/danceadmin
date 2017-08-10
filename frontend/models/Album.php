@@ -62,4 +62,22 @@ class Album extends MongodbModel
         $query->select(['_id'])->from('album');
         return ArrayHelper::map($query->all(), '_id', '_id');
     }
+    
+    public function getGallery()
+    {
+        return $this->hasMany(Gallery::className(), ['album' => '_id']);
+    }
+    
+    public function createItemsForGallery()
+    {
+        $items = [];
+        foreach ($this->gallery as $gallery) {
+            $items[] = [
+                'url' => $gallery['fullurl'],
+                'src' => '/thumbs/sm_' . $gallery['name'],
+                'options' => array('title' => $gallery['album'])
+            ];
+        }
+        return $items;
+    }
 }

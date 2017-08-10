@@ -32,12 +32,14 @@ class GalleryController extends BaseUploadController
     
     public function actionGallery($id)
     {
-//        $gallery = 
+        $album = Album::find()->where(['_id' => $id])->with('gallery')->one();
+        return $this->render('gallery', 
+                ['items' => $album->createItemsForGallery(), 'album' => $id]);
     }
     
     public function actionAlbums()
     {
-        return $this->render('albums', ['albums' => Album::albumList()]);
+        return $this->render('albums', ['albums' => Gallery::getAlbums()]);
     }
     
     public function actionMakethumb()

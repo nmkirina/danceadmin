@@ -29,6 +29,7 @@ return [
     'Staff' => 'Танцоры',
     'Active' => 'Активный',
     'Album' => 'Альбом',
+    'Albums' => 'Альбомы',
     'Are you sure you want to delete this item?' => 'Вы уверены, что хотите удалить запись?',
     'Body' => 'Тело',
     'Create' => 'Создать',
