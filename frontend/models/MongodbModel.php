@@ -58,8 +58,10 @@ class MongodbModel extends ActiveRecord
             $this->fullurl = Yii::$app->urlManager->createAbsoluteUrl('') . self::UPLOADS . $this->$field;
             $file->saveAs( Yii::$app->params['uploadsPath'] . self::UPLOADS . $this->$field);
             self::makeThumbs([$this->$field]);
-            $json = new GalleryJson();
-            $json->addImage($this->fullurl);
+            if(self::collectionName() == 'gallery'){
+                $json = new GalleryJson();
+                $json->addImage($this->fullurl);
+            }
             return true;
         }
         return false;
@@ -135,8 +137,10 @@ class MongodbModel extends ActiveRecord
     public function deleteFileAndThumb()
     {
         $field = $this->imageFieldName;
-        $json = new GalleryJson();
-        $json->deleteImage($this->fullurl);
+        if(self::collectionName() == 'gallery') {
+            $json = new GalleryJson();
+            $json->deleteImage($this->fullurl);
+        }
         return $this->deleteFile(self::UPLOADS . $this->$field) &&
                 $this->deleteFile(self::THUMBS . self::THUMBS_PREFIX . $this->$field);
     }
