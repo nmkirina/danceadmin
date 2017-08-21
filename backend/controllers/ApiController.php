@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\controllers\BaseApiController;
+use yii\mongodb\Query;
 
 
 class ApiController extends BaseApiController
@@ -65,5 +66,13 @@ class ApiController extends BaseApiController
     public function  actionStaffbyid()
     {
         return $this->getById('staff');
+    }
+    public function actionArtdirector()
+    {
+        $query = new Query();
+        $query->select([])->from('staff')
+                ->where(['status' => ["2"]]);
+        $result = $query->one();
+        return $this->response($result);
     }
 }
