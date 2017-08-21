@@ -12,8 +12,15 @@ echo $this->render('../template/index', ['title' => 'Staff',
                 
             ],
             'start_date',
-            'active',
-
+            [
+              'attribute' => 'active',
+              'value' => function($data){return $data->isActive();}
+            ],
+            'description',
+            [
+                'attribute' => 'status',
+                'value' => function($data){return $data->statusString();}
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);

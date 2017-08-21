@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
+use frontend\models\Staff;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Album */
@@ -23,7 +24,9 @@ $image = $model->imageFieldName;
         <?php elseif(in_array($field, Yii::$app->params['yearsFields'])):?>
             <?= $form->field($model, $field)->dropDownList($model->yearsList()); ?>            
         <?php elseif($field == 'active'):?>
-            <?= $form->field($model, $field)->radioList([0 => 'Активный участник', 1 => 'Неактивный участник']); ?>
+            <?= $form->field($model, $field)->radioList(Staff::activeList()); ?>
+        <?php elseif($field == 'status'):?>
+            <?= $form->field($model, $field)->checkboxList(Staff::status()); ?>
         <?php elseif($field != 'fullurl'):?>
             <?= $form->field($model, $field); ?>
         <?php endif;?>    

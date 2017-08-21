@@ -19,6 +19,7 @@
 return [
     'Create ' => 'Создать',
     'Dances' => 'Танцы',
+    'Dance' => 'Танцы',
     'Fresky' => 'Театр танца "Фрески"',
     'Gallery' => 'Галерея',
     'History' => 'История',
@@ -56,5 +57,12 @@ return [
     'Verification Code' => 'Код подтверждения',
     'Year' => 'Год',
     '{modelname}' => 'Имя модели',
-    'Image files' => 'Изображения'
+    'Image files' => 'Изображения',
+    'Inactive' => 'Не активный',
+    'Active' => 'Активный',
+    'Teaching' => 'Преподает',
+    'Artistic director' => 'Художественный руководитель',
+    'Is Active' => 'Участник коллектива',
+    'Dancing' => 'Танцует',
+    'Status' => 'Статус'
 ];
