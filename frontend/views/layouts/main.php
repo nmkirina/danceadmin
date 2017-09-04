@@ -48,6 +48,7 @@ AppAsset::register($this);
             ['label' => Yii::t('app', 'Staff'), 'url' => ['/staff/index']],
             ['label' => Yii::t('app', 'Album'), 'url' => ['/album/index']],
             ['label' => Yii::t('app', 'Gallery'), 'url' => ['/gallery/index']],
+            ['label' => Yii::t('app', 'Comments'), 'url' => ['/comments/index']],
 //            ['label' => 'Make thumb', 'url' => ['/gallery/makethumb']],
         ];
         $menuItems[] = '<li>'

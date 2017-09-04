@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\controllers\BaseApiController;
 use yii\mongodb\Query;
+use frontend\models\Comments;
 
 
 class ApiController extends BaseApiController
@@ -73,6 +74,24 @@ class ApiController extends BaseApiController
         $query->select([])->from('staff')
                 ->where(['status' => ["2"]]);
         $result = $query->one();
+        return $this->response($result);
+    }
+    public function actionComment($text, $danceid)
+    {
+        $comment = new Comments();
+        $comment->text = $this->getParams('text');
+        $comment->approved = 0;
+        $comment->danceid = $this->getParams('danceid');
+        if($comment->save()){
+            return $this->response(['OK']);
+        } 
+    }
+    public function actionGetcomments()
+    {
+        $query = new Query();
+        $query->select([])->from('comments')
+                ->where(['approved' => ["1"]]);
+        $result = $query->all();
         return $this->response($result);
     }
 }
