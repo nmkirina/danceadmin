@@ -81,6 +81,7 @@ class ApiController extends BaseApiController
         $comment = new Comments();
         $comment->text = $this->getParams('text');
         $comment->approved = 0;
+        $comment->created = date();
         $comment->danceid = $this->getParams('danceid');
         if($comment->save()){
             return $this->response(['OK']);

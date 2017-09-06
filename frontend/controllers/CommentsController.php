@@ -45,33 +45,15 @@ class CommentsController extends Controller
     }
 
     /**
-     * Displays a single Comments model.
-     * @param integer $_id
+     * 
+     * Deletes banned comments
      * @return mixed
      */
-    public function actionView($id)
+    public function actionDeletebanned()
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Comments model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Comments();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => (string)$model->_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+        $collection  = Yii::$app->mongodb->getCollection('comments');
+        $collection->remove(['approved' => Comments::BANNED_COMMENT . ""]);
+        return $this->redirect(['index']);
     }
 
     /**
@@ -85,7 +67,7 @@ class CommentsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => (string)$model->_id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

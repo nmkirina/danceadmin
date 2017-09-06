@@ -59,8 +59,7 @@ class CommentsSearch extends Comments
         // grid filtering conditions
         $query->andFilterWhere(['like', '_id', $this->_id])
             ->andFilterWhere(['like', 'danceid', $this->danceid])
-            ->andFilterWhere(['like', 'text', $this->text])
-            ->andFilterWhere(['like', 'approved', $this->approved]);
+            ->andFilterWhere(['approved' => $this->approved]);
 
         return $dataProvider;
     }

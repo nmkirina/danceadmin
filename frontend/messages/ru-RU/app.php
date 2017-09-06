@@ -19,7 +19,7 @@
 return [
     'Create ' => 'Создать',
     'Dances' => 'Танцы',
-    'Dance' => 'Танцы',
+    'Dance' => 'Танец',
     'Fresky' => 'Театр танца "Фрески"',
     'Gallery' => 'Галерея',
     'History' => 'История',
@@ -64,5 +64,8 @@ return [
     'Artistic director' => 'Художественный руководитель',
     'Is Active' => 'Участник коллектива',
     'Dancing' => 'Танцует',
-    'Status' => 'Статус'
+    'Status' => 'Статус',
+    'Created' => 'Создан',
+    'Approved' => 'Принят',
+    'Delete banned comments' => 'Удалить все запрещенные сообшения',
 ];

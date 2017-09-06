@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use frontend\models\MongodbModel;
+use yii\mongodb\Query;
 
 /**
  * This is the model class for collection "dances".
@@ -70,5 +71,22 @@ class Dances extends MongodbModel
             'description' => Yii::t('app', 'Description'),
             'start_year' => Yii::t('app', 'Start Year'),
         ];
+    }
+    
+    public static function getList()
+    {
+        $query = new Query();
+        $query->select(['_id', 'name'])->from('dances');
+        $dances = $query->all();
+        return self::arrayMap($dances);
+    }
+    
+    protected static function arrayMap($dances)
+    {
+        $map = [];
+        foreach ($dances as $dance){
+            $map[$dance['_id'] . ''] = $dance['name'];
+        }
+        return $map;
     }
 }
